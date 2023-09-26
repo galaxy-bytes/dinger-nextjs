@@ -199,11 +199,21 @@ export default function Home() {
   };
 
   return (
-    <div className="app-page">
-      <div className="form">
-        <button id="copy-did" onClick={handleCopyDid}>
-          Copy your DID
-        </button>
+    <div className="app-container">
+    <header className="app-header">
+      <h1>Dinger App</h1>
+    </header>
+    <main className="app-main">
+    <section className="dings-list">
+      <h2>Received Dings</h2>
+      <ul id="dinged-by-list">
+          {receivedDings.map((ding, index) => (
+            <li key={index}>
+              <p>{ding.note}</p>
+            </li>
+          ))}
+        </ul>
+    </section>
         
         <form id="ding-form" onSubmit={handleSubmit}>
           <input
@@ -221,16 +231,21 @@ export default function Home() {
           <button type="submit">Ding</button>
           {error && <p className="message">{error}</p>}
         </form>
+        <section className="send-ding-form">
+      <h2>Send a Ding</h2>
+      <form>
+        <input type="text" placeholder="Recipient DID" />
+        <textarea placeholder="Your message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
         
-        <h2>Dinged by</h2>
-        <ul id="dinged-by-list">
-          {receivedDings.map((ding, index) => (
-            <li key={index}>
-              <p>{ding.note}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+
+  <footer className="app-footer">
+    <p>&copy; 2023 Dinger App</p>
+  </footer>
+  
     </div>
   );
   
